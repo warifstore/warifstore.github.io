@@ -306,6 +306,13 @@
     border-radius:8px;
     box-shadow:var(--shadow);
   }
+  button.card__frame{
+    width:100%;
+    padding:0;
+    cursor:zoom-in;
+    appearance:none;
+    font:inherit;
+  }
   .card__frame img{
     width:100%;
     height:100%;
@@ -314,6 +321,27 @@
     transition:transform .5s ease;
   }
   .card:hover .card__frame img{transform:scale(1.035);}
+  .card__frame::after{
+    content:"عرض أكبر";
+    position:absolute;
+    inset-inline-end:12px;
+    inset-block-end:12px;
+    background:rgba(23,16,20,0.74);
+    color:var(--ivory);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:999px;
+    padding:0.34rem 0.68rem;
+    font-size:0.74rem;
+    font-weight:700;
+    opacity:0;
+    transform:translateY(4px);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  button.card__frame:hover::after,
+  button.card__frame:focus-visible::after{
+    opacity:1;
+    transform:translateY(0);
+  }
   .card__placeholder{
     width:100%;
     height:100%;
@@ -437,6 +465,61 @@
     display:block;
   }
 
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:20;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:clamp(1rem, 4vw, 2.5rem);
+    background:rgba(23,16,20,0.78);
+    backdrop-filter:blur(10px);
+  }
+  .lightbox.is-open{display:flex;}
+  .lightbox__dialog{
+    width:min(980px, 100%);
+    max-height:92vh;
+    display:grid;
+    gap:0.85rem;
+  }
+  .lightbox__media{
+    position:relative;
+    background:var(--ivory);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 28px 80px rgba(0,0,0,0.36);
+  }
+  .lightbox__image{
+    width:100%;
+    max-height:82vh;
+    object-fit:contain;
+    display:block;
+    background:var(--ivory);
+  }
+  .lightbox__close{
+    position:absolute;
+    inset-block-start:12px;
+    inset-inline-end:12px;
+    width:42px;
+    aspect-ratio:1;
+    border:1px solid rgba(23,16,20,0.16);
+    border-radius:50%;
+    background:rgba(255,249,251,0.9);
+    color:var(--ink);
+    font-size:1.45rem;
+    line-height:1;
+    cursor:pointer;
+  }
+  .lightbox__caption{
+    color:var(--ivory);
+    text-align:center;
+    font-family:'El Messiri',serif;
+    font-size:1.15rem;
+    margin:0;
+  }
+
   @media (max-width:640px){
     .hero{
       min-height:auto;
@@ -451,6 +534,8 @@
     .shop__head{flex-direction:column; align-items:flex-start; gap:0.4rem;}
     .grid{grid-template-columns:1fr; gap:2.1rem;}
     .card__top{flex-direction:column; gap:0.45rem;}
+    .lightbox{padding:0.75rem;}
+    .lightbox__image{max-height:78vh;}
   }
 
   @media (min-width:641px) and (max-width:980px){
@@ -528,11 +613,25 @@
     <a href="https://instagram.com/warifstore.dz" id="igFooterLink" target="_blank" rel="noopener">انستغرام ↗</a>
   </footer>
 
+  <div class="lightbox" id="imageLightbox" role="dialog" aria-modal="true" aria-label="عرض صورة المنتج">
+    <div class="lightbox__dialog">
+      <div class="lightbox__media">
+        <button class="lightbox__close" type="button" id="lightboxClose" aria-label="إغلاق">×</button>
+        <img class="lightbox__image" id="lightboxImage" alt="">
+      </div>
+      <p class="lightbox__caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
 <script>
   const grid = document.getElementById('grid');
   const itemCount = document.getElementById('itemCount');
   const demoBanner = document.getElementById('demoBanner');
   const igFooterLink = document.getElementById('igFooterLink');
+  const imageLightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
   const cleanHandle = INSTAGRAM_HANDLE.replace(/^@/, '').trim();
   igFooterLink.href = `https://instagram.com/${encodeURIComponent(cleanHandle)}`;
   igFooterLink.textContent = `@${cleanHandle} ↗`;
@@ -680,8 +779,13 @@
     const card = document.createElement('article');
     card.className = 'card';
 
-    const frame = document.createElement('div');
+    const frame = document.createElement(product.image ? 'button' : 'div');
     frame.className = 'card__frame';
+    if(product.image){
+      frame.type = 'button';
+      frame.setAttribute('aria-label', `عرض صورة ${product.name} بحجم أكبر`);
+      frame.addEventListener('click', () => openLightbox(product));
+    }
 
     const tag = document.createElement('span');
     tag.className = 'tag';
@@ -731,6 +835,33 @@
     card.append(frame, body);
     return card;
   }
+
+  function openLightbox(product){
+    lightboxImage.src = product.image;
+    lightboxImage.alt = product.name;
+    lightboxCaption.textContent = product.name;
+    imageLightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function closeLightbox(){
+    imageLightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+    lightboxImage.removeAttribute('src');
+    lightboxImage.alt = '';
+    lightboxCaption.textContent = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  imageLightbox.addEventListener('click', event => {
+    if(event.target === imageLightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape' && imageLightbox.classList.contains('is-open')){
+      closeLightbox();
+    }
+  });
 
   function createImagePlaceholder(){
     const placeholder = document.createElement('div');
