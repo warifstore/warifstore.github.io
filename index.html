@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&amp;family=Tajawal:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="assets/warif-logo.svg" type="image/svg+xml">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
 <style>
@@ -149,13 +150,21 @@
     gap:0.7rem;
     margin-top:2.1rem;
   }
-  .hero__meta span{
-    border:1px solid rgba(201,155,70,0.34);
+  .hero__meta span,
+  .hero__meta a{
+    border:1px solid rgba(201,155,70,0.58);
     border-radius:999px;
-    background:rgba(255,255,255,0.48);
+    background:rgba(255,249,239,0.82);
     color:var(--berry);
-    padding:0.45rem 0.8rem;
+    padding:0.34rem 0.78rem;
     font-size:0.8rem;
+    font-weight:700;
+    line-height:1.35;
+    text-decoration:none;
+  }
+  .hero__meta a:hover{
+    background:var(--ink);
+    color:var(--ivory);
   }
   .hero__showcase{
     position:relative;
@@ -165,35 +174,15 @@
     width:112px;
     aspect-ratio:1;
     border-radius:50%;
-    background:
-      radial-gradient(circle, #FFF8FA 0 58%, transparent 59%),
-      conic-gradient(from 20deg, #FFD84D, #F04C95, #7A38D8, #FFD84D);
     box-shadow:0 14px 35px rgba(75,25,46,0.18);
-    display:grid;
-    place-items:center;
     margin-inline-start:auto;
     margin-bottom:1rem;
-  }
-  .logo-mark__inner{
-    width:86px;
-    aspect-ratio:1;
-    border-radius:50%;
-    border:1px solid rgba(217,66,123,0.24);
-    display:grid;
-    place-items:center;
-    text-align:center;
-    color:var(--berry);
-    font-family:'El Messiri',serif;
-    font-size:0.82rem;
-    line-height:1.25;
-  }
-  .logo-mark__inner::before{
-    content:"Warif";
     display:block;
-    font-size:1rem;
-    font-weight:700;
-    line-height:1;
-    margin-bottom:0.2rem;
+  }
+  .logo-mark img{
+    width:100%;
+    height:100%;
+    display:block;
   }
   .gift-collage{
     display:grid;
@@ -257,22 +246,6 @@
     margin:0.65rem 0 0;
     line-height:1.45;
   }
-  .highlight-strip{
-    display:flex;
-    gap:0.8rem;
-    margin-top:1rem;
-  }
-  .highlight{
-    flex:1;
-    background:#12161A;
-    color:var(--ivory);
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:999px;
-    padding:0.7rem 0.8rem;
-    text-align:center;
-    font-size:0.76rem;
-  }
-
   /* ---------- المتجر ---------- */
   .shop{
     padding:4.5rem 6vw 6rem;
@@ -388,16 +361,6 @@
     min-width:0;
     margin:0;
   }
-  .card__note{
-    font-weight:700;
-    color:var(--berry);
-    white-space:nowrap;
-    font-size:0.78rem;
-    border:1px solid rgba(201,155,70,0.34);
-    background:rgba(247,231,196,0.42);
-    border-radius:999px;
-    padding:0.24rem 0.58rem;
-  }
   .card__desc{
     font-size:0.9rem;
     line-height:1.7;
@@ -458,6 +421,21 @@
     font-weight:700;
   }
   footer a:hover{text-decoration:underline;}
+  .footer__brand{
+    display:inline-flex;
+    align-items:center;
+    gap:0.7rem;
+    color:var(--ivory);
+    font-weight:700;
+    text-decoration:none;
+  }
+  .footer__brand:hover{text-decoration:none;}
+  .footer__logo{
+    width:38px;
+    aspect-ratio:1;
+    border-radius:50%;
+    display:block;
+  }
 
   @media (max-width:640px){
     .hero{
@@ -469,8 +447,6 @@
     .hero__showcase{min-height:auto;}
     .gift-collage{grid-template-columns:1fr 1fr;}
     .gift-tile--main{grid-column:1/-1; grid-row:auto; min-height:280px;}
-    .highlight-strip{gap:0.55rem;}
-    .highlight{font-size:0.72rem; padding:0.6rem 0.45rem;}
     .shop{padding:3rem 6vw 4rem;}
     .shop__head{flex-direction:column; align-items:flex-start; gap:0.4rem;}
     .grid{grid-template-columns:1fr; gap:2.1rem;}
@@ -500,19 +476,19 @@
     <div class="hero__inner">
       <div>
         <span class="hero__eyebrow label">Warif Store</span>
-        <h1>بوكسات وارف للهدايا</h1>
+        <h1>متجر وريف للهدايا</h1>
         <p>هدايا وردية ولطيفة تجمع العطر، الإكسسوارات، التفاصيل الصغيرة، ولمسة تغليف تخلّي الطلب يوصلك كهدية جاهزة.</p>
         <a class="hero__cta" href="#shop">اختاري البوكس المناسب ↓</a>
-        <div class="hero__meta" aria-label="تصنيفات متجر وارف">
-          <span>Reviews</span>
-          <span>Cute stuff</span>
-          <span>Accessories</span>
+        <div class="hero__meta" aria-label="مزايا متجر وارف">
+          <span>🇩🇿 الجزائر</span>
+          <span>نقبل الدفع الإلكتروني</span>
+          <a href="https://instagram.com/warifstore.dz" target="_blank" rel="noopener">الطلب عبر الرسائل</a>
         </div>
       </div>
       <div class="hero__showcase" aria-label="أمثلة من بوكسات وارف">
-        <div class="logo-mark" aria-hidden="true">
-          <div class="logo-mark__inner">Store</div>
-        </div>
+        <a class="logo-mark" href="https://instagram.com/warifstore.dz" target="_blank" rel="noopener" aria-label="Warif Store على انستغرام">
+          <img src="assets/warif-logo.svg" alt="Warif Store">
+        </a>
         <div class="gift-collage">
           <div class="gift-tile gift-tile--main">
             <img src="https://lh3.googleusercontent.com/d/1BE4xuU6IXxRly8Xxf0orDteq-vz9Iyzc=w1000" alt="بوكس هدية وردي من Warif Store">
@@ -525,11 +501,6 @@
             <span class="gift-tile__label">Your order made my day</span>
             <p class="gift-tile__caption">تغليف وردي بتفاصيل ذهبية</p>
           </div>
-        </div>
-        <div class="highlight-strip" aria-label="أقسام انستغرام">
-          <span class="highlight">Reviews</span>
-          <span class="highlight">Cute stuff</span>
-          <span class="highlight">Accessories</span>
         </div>
       </div>
      </div>
@@ -550,7 +521,10 @@
   </section>
 
   <footer>
-    <span>Warif Store</span>
+    <a class="footer__brand" href="https://instagram.com/warifstore.dz" target="_blank" rel="noopener" aria-label="Warif Store على انستغرام">
+      <img class="footer__logo" src="assets/warif-logo.svg" alt="">
+      Warif Store
+    </a>
     <a href="https://instagram.com/warifstore.dz" id="igFooterLink" target="_blank" rel="noopener">انستغرام ↗</a>
   </footer>
 
@@ -736,11 +710,7 @@
     name.className = 'card__name';
     name.textContent = product.name;
 
-    const note = document.createElement('span');
-    note.className = 'card__note';
-    note.textContent = 'السعر عند التواصل';
-
-    top.append(name, note);
+    top.append(name);
     body.append(top);
 
     if(product.description){
