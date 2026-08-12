@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>متجر وريف</title>
-<meta name="description" content="Warif Store — بوكسات هدايا وردية ولطيفة تُطلب عبر رسائل انستغرام.">
+<meta name="description" content="Warif Store — بوكسات هدايا لطيفة تُطلب عبر رسائل انستغرام.">
 
 <!-- =====================================================================
      الإعدادات — عدّلي هذين السطرين فقط، لا حاجة للمس أي شيء آخر.
@@ -554,9 +554,9 @@
             <span>هدايا بتفاصيل ناعمة</span>
           </span>
         </a>
-        <span class="hero__eyebrow label">بوكسات وردية جاهزة للإهداء</span>
+        <span class="hero__eyebrow label">بوكسات جاهزة للإهداء</span>
         <h1>متجر وريف للهدايا</h1>
-        <p>هدايا وردية ولطيفة تجمع العطر، الإكسسوارات، التفاصيل الصغيرة، ولمسة تغليف تخلّي الطلب يوصلك كهدية جاهزة.</p>
+        <p>هدايا لطيفة تجمع العطر، الإكسسوارات، التفاصيل الصغيرة، ولمسة تغليف تخلّي الطلب يوصلك كهدية جاهزة.</p>
         <a class="hero__cta" href="#shop">اختاري البوكس المناسب ↓</a>
         <div class="hero__meta" aria-label="مزايا متجر وريف">
           <span>🇩🇿 الجزائر</span>
@@ -758,6 +758,13 @@
     demoBanner.append(banner);
   }
 
+  function productCountText(count){
+    if(count === 1) return 'قطعة واحدة';
+    if(count === 2) return 'قطعتان';
+    if(count >= 3 && count <= 10) return `${count} قطع`;
+    return `${count} قطعة`;
+  }
+
   function createProductCard(product, index){
     const card = document.createElement('article');
     card.className = 'card';
@@ -868,7 +875,7 @@
       return;
     }
 
-    itemCount.textContent = `${products.length} قطعة`;
+    itemCount.textContent = productCountText(products.length);
     setDemoBanner(isDemo);
 
     grid.innerHTML = '';
