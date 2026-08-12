@@ -1,47 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">Warif Store logo</title>
-  <desc id="desc">A circular Warif Store logo with a pink gift box, bow, and ribbon wordmark.</desc>
-  <defs>
-    <linearGradient id="ring" x1="63" y1="437" x2="449" y2="75" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F7C84C"/>
-      <stop offset="0.36" stop-color="#F25F8F"/>
-      <stop offset="0.68" stop-color="#D83384"/>
-      <stop offset="1" stop-color="#6737D1"/>
-    </linearGradient>
-    <linearGradient id="rose" x1="133" y1="140" x2="389" y2="380" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F9B5C6"/>
-      <stop offset="1" stop-color="#D9427B"/>
-    </linearGradient>
-    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#5C1839" flood-opacity="0.16"/>
-    </filter>
-  </defs>
-
-  <circle cx="256" cy="256" r="240" fill="#14181C"/>
-  <circle cx="256" cy="256" r="219" fill="none" stroke="url(#ring)" stroke-width="14"/>
-  <circle cx="256" cy="256" r="199" fill="#FFF9FB"/>
-  <circle cx="256" cy="256" r="180" fill="none" stroke="#F7D7E1" stroke-width="2"/>
-
-  <g opacity="0.26" stroke="#D9427B" stroke-width="8" stroke-linecap="round" fill="none">
-    <path d="M164 256c34-36 70-55 108-55 28 0 53 10 75 30"/>
-    <path d="M159 281c42 29 87 39 134 29 28-6 51-19 69-39"/>
-    <path d="M204 180c42-30 83-29 124 2"/>
-  </g>
-
-  <g filter="url(#softShadow)">
-    <path d="M167 247h178c15 0 27 12 27 27v72c0 15-12 27-27 27H167c-15 0-27-12-27-27v-72c0-15 12-27 27-27z" fill="#FFF0F5" stroke="#D9427B" stroke-width="8"/>
-    <path d="M147 274h218" stroke="#EFA8BB" stroke-width="7" stroke-linecap="round"/>
-    <path d="M256 247v126" stroke="#EFA8BB" stroke-width="8" stroke-linecap="round"/>
-    <path d="M256 201c-34-42-83-37-88-4-4 29 36 36 88 4z" fill="#FFF9FB" stroke="url(#rose)" stroke-width="9" stroke-linejoin="round"/>
-    <path d="M256 201c34-42 83-37 88-4 4 29-36 36-88 4z" fill="#FFF9FB" stroke="url(#rose)" stroke-width="9" stroke-linejoin="round"/>
-    <path d="M256 201c-5-35-1-63 13-85 11-17 27-20 37-9 13 14 3 40-50 94z" fill="none" stroke="#D9427B" stroke-width="9" stroke-linecap="round"/>
-    <path d="M256 201c5-35 1-63-13-85-11-17-27-20-37-9-13 14-3 40 50 94z" fill="none" stroke="#D9427B" stroke-width="9" stroke-linecap="round"/>
-  </g>
-
-  <path d="M133 302c38-12 80-18 123-18s85 6 123 18v55c-39-12-80-18-123-18s-84 6-123 18z" fill="#FFF9FB" stroke="#D9427B" stroke-width="7"/>
-  <path d="M151 315c34-8 69-12 105-12s71 4 105 12" fill="none" stroke="#F4B3C6" stroke-width="3" stroke-linecap="round"/>
-
-  <text x="247" y="335" text-anchor="end" fill="#8A3158" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-style="italic" font-weight="700">Warif</text>
-  <text x="265" y="335" text-anchor="start" fill="#8A3158" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-style="italic" font-weight="700">Store</text>
-  <text x="256" y="392" text-anchor="middle" fill="#9D7A3D" font-family="Arial, sans-serif" font-size="18" letter-spacing="1.6">MAKE EVERY GIFT SPECIAL</text>
+  <desc id="desc">A clean flat Warif Store mark with a blush gift, berry ribbon, and small leaf detail.</desc>
+  <rect width="512" height="512" rx="132" fill="#FFF6F9"/>
+  <circle cx="386" cy="126" r="48" fill="#F7D7E1"/>
+  <circle cx="120" cy="398" r="34" fill="#F7E7C4"/>
+  <path d="M132 248h248c18 0 32 14 32 32v104c0 18-14 32-32 32H132c-18 0-32-14-32-32V280c0-18 14-32 32-32Z" fill="#FAD8E3"/>
+  <path d="M118 286h276" fill="none" stroke="#C7356F" stroke-width="24" stroke-linecap="round"/>
+  <path d="M256 248v168" fill="none" stroke="#C7356F" stroke-width="28" stroke-linecap="round"/>
+  <path d="M255 215c-49-58-116-48-126-9-9 35 44 47 126 9Z" fill="#FFFDF5" stroke="#C7356F" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M257 215c49-58 116-48 126-9 9 35-44 47-126 9Z" fill="#FFFDF5" stroke="#C7356F" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M258 201c4-54 25-92 61-114 21-13 47-5 54 17 8 27-24 62-115 97Z" fill="#F7E7C4"/>
+  <path d="M251 201c-4-54-25-92-61-114-21-13-47-5-54 17-8 27 24 62 115 97Z" fill="#F7E7C4"/>
+  <path d="M204 358c30 18 70 18 104 0" fill="none" stroke="#8A3158" stroke-width="14" stroke-linecap="round"/>
 </svg>
