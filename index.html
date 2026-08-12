@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>متجر وارف</title>
-<meta name="description" content="متجر وارف — تصفّحي القطع الحالية واطلبي عبر الرسائل الخاصة.">
+<meta name="description" content="Warif Store — بوكسات هدايا وردية ولطيفة تُطلب عبر رسائل انستغرام.">
 
 <!-- =====================================================================
      الإعدادات — عدّلي هذين السطرين فقط، لا حاجة للمس أي شيء آخر.
@@ -14,7 +14,7 @@
   const PRODUCTS_CSV_URL = "https://docs.google.com/spreadsheets/d/1p72LEnymJdVM3Vy_-LrBDQUYaGOc-Gt0qkLU4ErPHW0/gviz/tq?tqx=out:csv&gid=0";
 
   // ٢) حساب انستغرام الخاص بالمتجر (بدون @).
-  const INSTAGRAM_HANDLE = "warifstore";
+  const INSTAGRAM_HANDLE = "warifstore.dz";
 </script>
 <!-- ===================================================================== -->
 
@@ -25,27 +25,30 @@
 
 <style>
   :root{
-    --ink: #3B0F2E;
-    --ink-soft: #52173F;
-    --blush: #FDF1F5;
-    --blush-dim: #F6DCE6;
-    --magenta: #D6336C;
-    --magenta-bright: #E8578C;
-    --berry: #9C3D63;
-    --ivory: #FFF8FA;
-    --rose: #C24E78;
-    --sage: #748C7B;
+    --ink: #171014;
+    --ink-soft: #3C2631;
+    --blush: #FFF3F7;
+    --blush-dim: #F8D6E1;
+    --magenta: #D9427B;
+    --magenta-bright: #F26B9D;
+    --berry: #8A3158;
+    --ivory: #FFF9FB;
+    --rose: #F1A7BD;
+    --sage: #84775B;
+    --gold: #C89B46;
+    --champagne: #F7E7C4;
     --paper: #FFFFFF;
-    --line: rgba(59,15,46,0.14);
+    --line: rgba(23,16,20,0.14);
     --line-dark: rgba(255,248,250,0.18);
-    --shadow: 0 18px 42px rgba(59,15,46,0.11);
+    --shadow: 0 18px 42px rgba(75,25,46,0.14);
   }
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--blush);
+    background:
+      linear-gradient(180deg, #FFF7FA 0%, var(--blush) 46%, #FFFFFF 100%);
     color:var(--ink);
     font-family:'Tajawal',sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -65,18 +68,38 @@
   .hero{
     min-height:82vh;
     background:
-      linear-gradient(90deg, rgba(59,15,46,0.94) 0%, rgba(59,15,46,0.82) 43%, rgba(59,15,46,0.34) 100%),
-      url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1800&q=80&auto=format&fit=crop") center/cover;
-    color:var(--ivory);
+      radial-gradient(circle at 15% 12%, rgba(248,214,225,0.86), transparent 27%),
+      linear-gradient(135deg, #FFF8FA 0%, #FCE6EE 48%, #F8CEDD 100%);
+    color:var(--ink);
     padding:5.5rem 6vw 4rem;
     position:relative;
     overflow:hidden;
     display:flex;
     align-items:center;
   }
-  .hero__inner{width:min(1120px, 100%); margin-inline:auto;}
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(201,155,70,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,155,70,0.09) 1px, transparent 1px);
+    background-size:34px 34px;
+    mask-image:linear-gradient(180deg, rgba(0,0,0,0.55), transparent 82%);
+    pointer-events:none;
+  }
+  .hero__inner{
+    width:min(1120px, 100%);
+    margin-inline:auto;
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) minmax(320px, 430px);
+    gap:3.5rem;
+    align-items:center;
+    position:relative;
+    z-index:1;
+  }
   .hero__eyebrow{
-    color:var(--magenta-bright);
+    color:var(--berry);
     margin-bottom:1.4rem;
     display:flex;
     align-items:center;
@@ -86,40 +109,40 @@
     content:"";
     width:22px;
     height:1px;
-    background:var(--magenta-bright);
+    background:var(--gold);
     display:inline-block;
   }
   .hero h1{
     font-family:'El Messiri',serif;
     font-weight:600;
-    font-size:4.8rem;
+    font-size:4.4rem;
     line-height:1.15;
     margin:0 0 1.6rem;
-    max-width:16ch;
+    max-width:13ch;
   }
   .hero p{
     font-size:1.05rem;
     line-height:1.85;
     max-width:40ch;
-    color:rgba(255,248,250,0.78);
+    color:rgba(23,16,20,0.68);
     margin:0 0 2.2rem;
   }
   .hero__cta{
     display:inline-flex;
     align-items:center;
     gap:0.6rem;
-    background:var(--ivory);
-    color:var(--ink);
+    background:var(--ink);
+    color:var(--ivory);
     padding:0.9rem 1.7rem;
     border-radius:999px;
     text-decoration:none;
     font-weight:700;
     font-size:0.92rem;
-    border:1px solid rgba(255,248,250,0.55);
-    box-shadow:0 16px 32px rgba(0,0,0,0.18);
+    border:1px solid rgba(23,16,20,0.08);
+    box-shadow:0 16px 32px rgba(75,25,46,0.18);
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
-  .hero__cta:hover{background:var(--magenta-bright); color:var(--ivory); transform:translateY(-1px);}
+  .hero__cta:hover{background:var(--magenta); color:var(--ivory); transform:translateY(-1px);}
   .hero__meta{
     display:flex;
     flex-wrap:wrap;
@@ -127,11 +150,127 @@
     margin-top:2.1rem;
   }
   .hero__meta span{
-    border:1px solid var(--line-dark);
+    border:1px solid rgba(201,155,70,0.34);
     border-radius:999px;
-    color:rgba(255,248,250,0.78);
+    background:rgba(255,255,255,0.48);
+    color:var(--berry);
     padding:0.45rem 0.8rem;
     font-size:0.8rem;
+  }
+  .hero__showcase{
+    position:relative;
+    min-height:430px;
+  }
+  .logo-mark{
+    width:112px;
+    aspect-ratio:1;
+    border-radius:50%;
+    background:
+      radial-gradient(circle, #FFF8FA 0 58%, transparent 59%),
+      conic-gradient(from 20deg, #FFD84D, #F04C95, #7A38D8, #FFD84D);
+    box-shadow:0 14px 35px rgba(75,25,46,0.18);
+    display:grid;
+    place-items:center;
+    margin-inline-start:auto;
+    margin-bottom:1rem;
+  }
+  .logo-mark__inner{
+    width:86px;
+    aspect-ratio:1;
+    border-radius:50%;
+    border:1px solid rgba(217,66,123,0.24);
+    display:grid;
+    place-items:center;
+    text-align:center;
+    color:var(--berry);
+    font-family:'El Messiri',serif;
+    font-size:0.82rem;
+    line-height:1.25;
+  }
+  .logo-mark__inner::before{
+    content:"Warif";
+    display:block;
+    font-size:1rem;
+    font-weight:700;
+    line-height:1;
+    margin-bottom:0.2rem;
+  }
+  .gift-collage{
+    display:grid;
+    grid-template-columns:1.08fr 0.92fr;
+    gap:0.85rem;
+    align-items:stretch;
+  }
+  .gift-tile{
+    border:1px solid rgba(23,16,20,0.11);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--paper);
+    box-shadow:var(--shadow);
+    min-height:172px;
+    position:relative;
+  }
+  .gift-tile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .gift-tile--main{
+    grid-row:span 2;
+    min-height:358px;
+  }
+  .gift-tile--pattern{
+    display:grid;
+    align-content:end;
+    padding:1rem;
+    background:
+      linear-gradient(150deg, rgba(255,255,255,0.64), rgba(248,214,225,0.2)),
+      repeating-linear-gradient(-32deg, rgba(255,255,255,0.4) 0 2px, transparent 2px 15px),
+      #F1A7BD;
+    color:var(--ink);
+  }
+  .gift-tile--gold{
+    display:grid;
+    align-content:end;
+    padding:1rem;
+    background:
+      radial-gradient(circle at 22% 24%, rgba(255,249,251,0.8) 0 11px, transparent 12px),
+      radial-gradient(circle at 78% 18%, rgba(255,249,251,0.58) 0 8px, transparent 9px),
+      linear-gradient(135deg, #F8D6E1, #F7E7C4);
+  }
+  .gift-tile__label{
+    background:rgba(255,249,251,0.86);
+    border:1px solid rgba(201,155,70,0.3);
+    border-radius:999px;
+    color:var(--berry);
+    display:inline-flex;
+    width:max-content;
+    max-width:100%;
+    padding:0.36rem 0.72rem;
+    font-weight:700;
+    font-size:0.8rem;
+  }
+  .gift-tile__caption{
+    font-family:'El Messiri',serif;
+    font-size:1.1rem;
+    margin:0.65rem 0 0;
+    line-height:1.45;
+  }
+  .highlight-strip{
+    display:flex;
+    gap:0.8rem;
+    margin-top:1rem;
+  }
+  .highlight{
+    flex:1;
+    background:#12161A;
+    color:var(--ivory);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:999px;
+    padding:0.7rem 0.8rem;
+    text-align:center;
+    font-size:0.76rem;
   }
 
   /* ---------- المتجر ---------- */
@@ -191,7 +330,7 @@
     background:var(--blush-dim);
     border:1px solid var(--line);
     overflow:hidden;
-    border-radius:6px;
+    border-radius:8px;
     box-shadow:var(--shadow);
   }
   .card__frame img{
@@ -221,15 +360,16 @@
     position:absolute;
     top:14px;
     inset-inline-start:-6px;
-    background:var(--ink);
-    color:var(--magenta-bright);
+    background:var(--ivory);
+    color:var(--berry);
     padding:0.32rem 0.75rem;
     font-family:'Tajawal',sans-serif;
     font-weight:700;
     font-size:0.72rem;
     transform:rotate(2deg);
-    box-shadow:0 3px 8px rgba(59,15,46,0.3);
-    border-radius:3px;
+    box-shadow:0 5px 14px rgba(75,25,46,0.18);
+    border:1px solid rgba(201,155,70,0.38);
+    border-radius:4px;
   }
 
   .card__body{padding:1rem 0.1rem 0;}
@@ -250,11 +390,11 @@
   }
   .card__note{
     font-weight:700;
-    color:var(--sage);
+    color:var(--berry);
     white-space:nowrap;
     font-size:0.78rem;
-    border:1px solid rgba(116,140,123,0.3);
-    background:rgba(255,255,255,0.6);
+    border:1px solid rgba(201,155,70,0.34);
+    background:rgba(247,231,196,0.42);
     border-radius:999px;
     padding:0.24rem 0.58rem;
   }
@@ -268,7 +408,7 @@
     display:inline-flex;
     align-items:center;
     gap:0.5rem;
-    background:var(--magenta);
+    background:var(--ink);
     color:var(--ivory);
     text-decoration:none;
     padding:0.62rem 1.2rem;
@@ -278,7 +418,7 @@
     min-height:42px;
     transition:background .2s ease, transform .2s ease;
   }
-  .card__cta:hover{background:var(--ink); transform:translateY(-1px);}
+  .card__cta:hover{background:var(--magenta); transform:translateY(-1px);}
 
   /* ---------- حالات فارغة ---------- */
   .state{
@@ -321,13 +461,16 @@
 
   @media (max-width:640px){
     .hero{
-      min-height:76vh;
+      min-height:auto;
       padding:3.6rem 6vw 3rem;
-      background:
-        linear-gradient(180deg, rgba(59,15,46,0.94) 0%, rgba(59,15,46,0.72) 68%, rgba(59,15,46,0.38) 100%),
-        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000&q=80&auto=format&fit=crop") center/cover;
     }
-    .hero h1{font-size:3.1rem;}
+    .hero__inner{grid-template-columns:1fr; gap:2.4rem;}
+    .hero h1{font-size:3rem;}
+    .hero__showcase{min-height:auto;}
+    .gift-collage{grid-template-columns:1fr 1fr;}
+    .gift-tile--main{grid-column:1/-1; grid-row:auto; min-height:280px;}
+    .highlight-strip{gap:0.55rem;}
+    .highlight{font-size:0.72rem; padding:0.6rem 0.45rem;}
     .shop{padding:3rem 6vw 4rem;}
     .shop__head{flex-direction:column; align-items:flex-start; gap:0.4rem;}
     .grid{grid-template-columns:1fr; gap:2.1rem;}
@@ -336,6 +479,8 @@
 
   @media (min-width:641px) and (max-width:980px){
     .hero h1{font-size:4rem;}
+    .hero__inner{grid-template-columns:1fr; gap:2.6rem;}
+    .hero__showcase{min-height:auto;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -353,21 +498,46 @@
 
   <section class="hero">
     <div class="hero__inner">
-      <span class="hero__eyebrow label">متجر وارف</span>
-      <h1>قطع تستاهل تسألي عنها.</h1>
-      <p>تشكيلة صغيرة ومتجددة من الأزياء والإكسسوارات. بدون سلة أو دفع إلكتروني — إذا عجبك شيء، ارسلي رسالة وحنا نكمل الباقي.</p>
-      <a class="hero__cta" href="#shop">شوفي القطع الحالية ↓</a>
-      <div class="hero__meta" aria-label="مزايا متجر وارف">
-        <span>طلبات عبر الرسائل</span>
-        <span>تحديثات من الشيت</span>
-        <span>السعر عند التواصل</span>
+      <div>
+        <span class="hero__eyebrow label">Warif Store</span>
+        <h1>بوكسات وارف للهدايا</h1>
+        <p>هدايا وردية ولطيفة تجمع العطر، الإكسسوارات، التفاصيل الصغيرة، ولمسة تغليف تخلّي الطلب يوصلك كهدية جاهزة.</p>
+        <a class="hero__cta" href="#shop">اختاري البوكس المناسب ↓</a>
+        <div class="hero__meta" aria-label="تصنيفات متجر وارف">
+          <span>Reviews</span>
+          <span>Cute stuff</span>
+          <span>Accessories</span>
+        </div>
       </div>
-    </div>
+      <div class="hero__showcase" aria-label="أمثلة من بوكسات وارف">
+        <div class="logo-mark" aria-hidden="true">
+          <div class="logo-mark__inner">Store</div>
+        </div>
+        <div class="gift-collage">
+          <div class="gift-tile gift-tile--main">
+            <img src="https://lh3.googleusercontent.com/d/1BE4xuU6IXxRly8Xxf0orDteq-vz9Iyzc=w1000" alt="بوكس هدية وردي من Warif Store">
+          </div>
+          <div class="gift-tile gift-tile--pattern">
+            <span class="gift-tile__label">Bismi'Allah</span>
+            <p class="gift-tile__caption">بداية ناعمة لكل هدية</p>
+          </div>
+          <div class="gift-tile gift-tile--gold">
+            <span class="gift-tile__label">Your order made my day</span>
+            <p class="gift-tile__caption">تغليف وردي بتفاصيل ذهبية</p>
+          </div>
+        </div>
+        <div class="highlight-strip" aria-label="أقسام انستغرام">
+          <span class="highlight">Reviews</span>
+          <span class="highlight">Cute stuff</span>
+          <span class="highlight">Accessories</span>
+        </div>
+      </div>
+     </div>
   </section>
 
   <section class="shop" id="shop">
     <div class="shop__head">
-      <h2>القطع الحالية</h2>
+      <h2>البوكسات الحالية</h2>
       <span class="shop__count label" id="itemCount"></span>
     </div>
     <div id="demoBanner"></div>
@@ -380,8 +550,8 @@
   </section>
 
   <footer>
-    <span>متجر وارف</span>
-    <a href="https://instagram.com/warifstore" id="igFooterLink" target="_blank" rel="noopener">انستغرام ↗</a>
+    <span>Warif Store</span>
+    <a href="https://instagram.com/warifstore.dz" id="igFooterLink" target="_blank" rel="noopener">انستغرام ↗</a>
   </footer>
 
 <script>
@@ -396,24 +566,19 @@
   // أمثلة توضيحية تظهر إلى أن يتم ربط شيت المنتجات الحقيقي
   const DEMO_PRODUCTS = [
     {
-      name: "توب كتان أوفرسايز",
-      image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=800&q=80",
-      description: "قصة واسعة مريحة، قماش كتان طبيعي بلون وردي فاتح."
+      name: "Bunny Box",
+      image: "https://lh3.googleusercontent.com/d/1BE4xuU6IXxRly8Xxf0orDteq-vz9Iyzc=w1000",
+      description: "بوكس وردي لمحبات التفاصيل اللطيفة، مناسب كهدية جاهزة."
     },
     {
-      name: "حقيبة يد منسوجة",
-      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80",
-      description: "شغل يدوي منسوج، مقاس متوسط يناسب الاستخدام اليومي."
+      name: "Daisy Box",
+      image: "",
+      description: "لمسة ربيعية داخل هدية صممت لمحبي زهور الأقحوان."
     },
     {
-      name: "أقراط دائرية ذهبية",
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
-      description: "تصميم بسيط وأنيق، مناسبة للإطلالات اليومية والسهرات."
-    },
-    {
-      name: "وشاح حرير وردي",
-      image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=800&q=80",
-      description: "خامة حرير ناعمة، يعطي لمسة أنيقة لأي إطلالة."
+      name: "Caffeine Box",
+      image: "",
+      description: "بوكس لعشاق القهوة ولحظاتها الدافئة."
     }
   ];
 
@@ -427,7 +592,12 @@
 
     const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
     if(driveMatch){
-      return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+      return `https://lh3.googleusercontent.com/d/${driveMatch[1]}=w1000`;
+    }
+
+    const driveIdMatch = url.match(/[?&]id=([^&#]+)/);
+    if(url.includes('drive.google.com') && driveIdMatch){
+      return `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}=w1000`;
     }
 
     return url;
