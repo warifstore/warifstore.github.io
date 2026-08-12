@@ -246,6 +246,7 @@
     font-weight:600;
     line-height:1.45;
     min-width:0;
+    margin:0;
   }
   .card__note{
     font-weight:700;
@@ -432,6 +433,80 @@
     return url;
   }
 
+  function googleSheetJsonpUrl(sourceUrl, callbackName){
+    const idMatch = sourceUrl.match(/spreadsheets\/d\/([^/]+)/);
+    if(!idMatch) return '';
+
+    const gidMatch = sourceUrl.match(/[?&#]gid=([^&#]+)/);
+    const gid = gidMatch ? gidMatch[1] : '0';
+    return `https://docs.google.com/spreadsheets/d/${idMatch[1]}/gviz/tq?tqx=out:json;responseHandler:${callbackName}&gid=${encodeURIComponent(gid)}`;
+  }
+
+  function gvizTableToRows(payload){
+    const table = payload && payload.table;
+    const rawRows = table && table.rows ? table.rows.map(row => {
+      return (row.c || []).map(cell => cell ? String(cell.v ?? cell.f ?? '').trim() : '');
+    }) : [];
+
+    if(!rawRows.length) return [];
+
+    let headers = (table.cols || []).map(col => String(col.label || '').trim().toLowerCase());
+    let dataRows = rawRows;
+
+    if(!headers.some(Boolean)){
+      headers = rawRows[0].map(value => value.trim().toLowerCase());
+      dataRows = rawRows.slice(1);
+    }
+
+    return dataRows.map(cells => {
+      return headers.reduce((row, header, index) => {
+        if(header) row[header] = cells[index] || '';
+        return row;
+      }, {});
+    });
+  }
+
+  function loadGoogleSheetRows(sourceUrl){
+    return new Promise((resolve, reject) => {
+      const callbackName = `warifSheet_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+      const scriptUrl = googleSheetJsonpUrl(sourceUrl, callbackName);
+
+      if(!scriptUrl){
+        reject(new Error('Not a Google Sheets URL'));
+        return;
+      }
+
+      const script = document.createElement('script');
+      const timeout = window.setTimeout(() => {
+        cleanup();
+        reject(new Error('Google Sheets request timed out'));
+      }, 12000);
+
+      function cleanup(){
+        window.clearTimeout(timeout);
+        delete window[callbackName];
+        script.remove();
+      }
+
+      window[callbackName] = payload => {
+        cleanup();
+        if(!payload || payload.status !== 'ok'){
+          reject(new Error('Google Sheets returned an error'));
+          return;
+        }
+        resolve(gvizTableToRows(payload));
+      };
+
+      script.onerror = () => {
+        cleanup();
+        reject(new Error('Google Sheets script failed to load'));
+      };
+
+      script.src = scriptUrl;
+      document.head.append(script);
+    });
+  }
+
   function setState(title, message){
     grid.innerHTML = '';
     const state = document.createElement('div');
@@ -487,7 +562,7 @@
     const top = document.createElement('div');
     top.className = 'card__top';
 
-    const name = document.createElement('span');
+    const name = document.createElement('h3');
     name.className = 'card__name';
     name.textContent = product.name;
 
@@ -550,6 +625,12 @@
 
   if(!PRODUCTS_CSV_URL){
     renderProducts(DEMO_PRODUCTS, true);
+  } else if(PRODUCTS_CSV_URL.includes('docs.google.com/spreadsheets/d/')) {
+    loadGoogleSheetRows(PRODUCTS_CSV_URL)
+      .then(rows => renderProducts(rows, false))
+      .catch(() => {
+        setState('تعذّر تحميل المنتجات', 'تأكدي أن الشيت متاح للرابط وأن الأعمدة مكتوبة بالإنجليزية: name و image و description.');
+      });
   } else {
     Papa.parse(PRODUCTS_CSV_URL, {
       download: true,
