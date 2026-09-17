@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أسعار التوصيل — متجر وريف</title>
+<meta name="description" content="ابحثي عن سعر التوصيل إلى ولايتك مع متجر وريف عبر خدمة NOEST.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="assets/warif-logo.svg" type="image/svg+xml">
+<style>
+  :root{
+    --ink:#171014;
+    --ink-soft:#4b3440;
+    --blush:#fff3f7;
+    --blush-deep:#f8d6e1;
+    --magenta:#d9427b;
+    --berry:#8a3158;
+    --gold:#c89b46;
+    --champagne:#f7e7c4;
+    --paper:#fff;
+    --line:rgba(23,16,20,.12);
+    --shadow:0 22px 60px rgba(75,25,46,.12);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    min-height:100vh;
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(circle at 8% 10%, rgba(247,231,196,.85), transparent 22rem),
+      radial-gradient(circle at 92% 25%, rgba(248,214,225,.8), transparent 28rem),
+      linear-gradient(180deg,#fff9fb 0%,#fff3f7 56%,#fff 100%);
+  }
+  a{color:inherit}
+  button,input{font:inherit}
+
+  .topbar{
+    width:min(1160px,calc(100% - 12vw));
+    margin:auto;
+    padding:1.25rem 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+  }
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;font-family:'El Messiri',serif;font-weight:700;color:var(--berry)}
+  .brand img{width:44px;height:44px;display:block}
+  .back{font-size:.88rem;font-weight:700;text-decoration:none;border-bottom:1px solid currentColor;color:var(--ink-soft)}
+  .back:hover{color:var(--magenta)}
+
+  main{width:min(1160px,calc(100% - 12vw));margin:0 auto;padding:2.4rem 0 6rem}
+  .hero{text-align:center;position:relative;padding:2.2rem 0 2.6rem}
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;color:var(--berry);font-size:.8rem;font-weight:800;letter-spacing:.02em}
+  .eyebrow::before,.eyebrow::after{content:"";width:20px;height:1px;background:var(--gold)}
+  h1{font-family:'El Messiri',serif;font-size:clamp(2.55rem,7vw,5.25rem);font-weight:600;line-height:1.12;margin:.8rem 0 .7rem}
+  .intro{max-width:610px;margin:auto;color:rgba(23,16,20,.65);font-size:1.03rem;line-height:1.85}
+
+  .search-shell{
+    max-width:780px;
+    margin:1.9rem auto 1rem;
+    padding:.55rem;
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    background:rgba(255,255,255,.86);
+    border:1px solid rgba(138,49,88,.2);
+    border-radius:999px;
+    box-shadow:0 18px 48px rgba(75,25,46,.13);
+    backdrop-filter:blur(12px);
+  }
+  .search-icon{width:46px;display:grid;place-items:center;color:var(--berry);font-size:1.25rem;flex:0 0 auto}
+  #search{width:100%;min-width:0;border:0;background:transparent;color:var(--ink);outline:0;padding:.72rem .2rem;font-size:1rem}
+  #search::placeholder{color:rgba(23,16,20,.42)}
+  .clear{border:0;background:var(--blush);color:var(--berry);border-radius:999px;width:40px;height:40px;cursor:pointer;display:none;place-items:center;font-size:1.15rem;flex:0 0 auto}
+  .clear.is-visible{display:grid}
+  .search-hint{font-size:.8rem;color:rgba(23,16,20,.52);margin:.8rem 0 0}
+
+  .notice{
+    max-width:780px;
+    margin:1.5rem auto 2.6rem;
+    display:flex;
+    align-items:flex-start;
+    gap:.85rem;
+    padding:1rem 1.15rem;
+    border:1px solid rgba(200,155,70,.34);
+    border-radius:14px;
+    background:rgba(255,249,239,.76);
+    color:var(--ink-soft);
+    line-height:1.7;
+    font-size:.88rem;
+  }
+  .notice__mark{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:var(--champagne);color:var(--berry);font-weight:800;flex:0 0 auto}
+  .notice strong{color:var(--ink)}
+
+  .results-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.4rem}
+  .results-head h2{font-family:'El Messiri',serif;font-weight:600;font-size:1.65rem;margin:0}
+  #resultCount{color:var(--berry);font-size:.8rem;font-weight:800;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;padding:.38rem .7rem;white-space:nowrap}
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+  .fee-card{
+    position:relative;
+    overflow:hidden;
+    padding:1.25rem;
+    border-radius:18px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.82);
+    box-shadow:0 10px 34px rgba(75,25,46,.07);
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+  }
+  .fee-card:hover{transform:translateY(-3px);border-color:rgba(217,66,123,.28);box-shadow:var(--shadow)}
+  .fee-card::after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:var(--blush);inset:-45px auto auto -35px;z-index:0}
+  .card-top,.fees{position:relative;z-index:1}
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+  .wilaya{margin:0;font-family:'El Messiri',serif;font-size:1.18rem;font-weight:600;line-height:1.4}
+  .wilaya small{display:block;font-family:'Tajawal',sans-serif;color:rgba(23,16,20,.5);font-size:.74rem;font-weight:700;margin-top:.1rem;direction:ltr;text-align:right}
+  .code{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-size:.75rem;font-weight:800;flex:0 0 auto}
+  .fees{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+  .fee{padding:.75rem;border-radius:12px;background:var(--blush);border:1px solid rgba(217,66,123,.09)}
+  .fee span{display:block;color:rgba(23,16,20,.56);font-size:.72rem;margin-bottom:.22rem}
+  .fee strong{display:block;color:var(--berry);font-size:1.05rem;white-space:nowrap}
+  .fee.unavailable{background:rgba(23,16,20,.035);border-color:transparent}
+  .fee.unavailable strong{font-size:.86rem;color:rgba(23,16,20,.42)}
+  .empty{grid-column:1/-1;text-align:center;border:1px dashed rgba(138,49,88,.3);background:rgba(255,255,255,.55);border-radius:18px;padding:3.5rem 1rem;color:rgba(23,16,20,.58)}
+  .empty strong{display:block;color:var(--ink);font-family:'El Messiri',serif;font-size:1.3rem;margin-bottom:.4rem}
+
+  .details{margin-top:2.7rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .detail{padding:1.25rem;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.55);line-height:1.75;font-size:.88rem;color:var(--ink-soft)}
+  .detail strong{color:var(--ink);display:block;margin-bottom:.15rem}
+  footer{background:var(--ink);color:rgba(255,248,250,.65);padding:2rem 6vw;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.86rem}
+  footer a{color:#f26b9d;text-decoration:none;font-weight:700}
+
+  @media(max-width:880px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:580px){
+    .topbar,main{width:min(100% - 2rem,1160px)}
+    main{padding-top:1rem}
+    .hero{padding-top:1.3rem}
+    .hero h1{font-size:2.75rem}
+    .search-shell{border-radius:18px}
+    .cards{grid-template-columns:1fr}
+    .details{grid-template-columns:1fr}
+    .results-head{align-items:center}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+  :focus-visible{outline:2px solid var(--magenta);outline-offset:3px}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="assets/warif-logo.svg" alt=""><span>Warif Store</span></a>
+    <a class="back" href="index.html">العودة إلى المتجر ←</a>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <span class="eyebrow">توصيل عبر الجزائر</span>
+      <h1 id="pageTitle">بكم التوصيل؟</h1>
+      <p class="intro">اكتبي اسم ولايتك أو رقمها، ونوريك السعر مباشرة. التوصيل يتم بكل عناية عبر خدمة <strong>NOEST</strong>.</p>
+      <div class="search-shell" role="search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="search" type="search" inputmode="search" autocomplete="off" placeholder="مثال: وهران، Oran أو 31" aria-label="ابحثي عن الولاية">
+        <button class="clear" id="clearSearch" type="button" aria-label="مسح البحث">×</button>
+      </div>
+      <p class="search-hint">ماشي مشكل إذا غلطتي في حرف — البحث يفهمك ✦</p>
+    </section>
+
+    <aside class="notice">
+      <span class="notice__mark">i</span>
+      <div><strong>الأسعار المعروضة هي الأسعار النهائية.</strong> أضفنا 100 دج إلى تسعيرة NOEST الأساسية لأن حسابنا غير مشترك في باقة الاشتراك.</div>
+    </aside>
+
+    <section aria-labelledby="resultsTitle">
+      <div class="results-head">
+        <h2 id="resultsTitle">كل الولايات المتاحة</h2>
+        <span id="resultCount" aria-live="polite"></span>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <div class="details">
+      <div class="detail"><strong>التوصيل للمنزل</strong>يوصل الطرد مباشرة إلى عنوان المستلمة في الولاية المختارة.</div>
+      <div class="detail"><strong>Stop Desk</strong>استلام الطرد من مكتب NOEST. إذا ظهر «غير متاح»، اختاري التوصيل للمنزل.</div>
+      <div class="detail"><strong>رسوم إرجاع الطرد</strong>400 دج لجميع الولايات المعروضة، وهي تشمل الزيادة نفسها.</div>
+      <div class="detail"><strong>ملاحظة</strong>الأسعار من جدول NOEST للانطلاق من ولاية ميلة، وقد تتغير عند تحديث شركة التوصيل لتسعيرتها.</div>
+    </div>
+  </main>
+
+  <footer><span>التوصيل بالشراكة مع NOEST</span><a href="index.html">Warif Store</a></footer>
+
+<script>
+  const WILAYAS = [
+    [43,'Mila','ميلة',600,400,'mila'],
+    [21,'Skikda','سكيكدة',850,550,'skikda skikda'],
+    [35,'Boumerdès','بومرداس',850,550,'boumerdes boumerdas'],
+    [16,'Alger','الجزائر',800,550,'alger algiers dzair الجزائر العاصمة'],
+    [44,'Aïn Defla','عين الدفلى',900,600,'ain defla ain ed defla'],
+    [23,'Annaba','عنابة',900,600,'annaba'],
+    [5,'Batna','باتنة',900,600,'batna'],
+    [6,'Béjaïa','بجاية',900,600,'bejaia bejaya'],
+    [9,'Blida','البليدة',900,600,'blida'],
+    [34,'Bordj Bou Arréridj','برج بوعريريج',900,600,'bordj bou arreridj bba'],
+    [10,'Bouira','البويرة',900,600,'bouira'],
+    [2,'Chlef','الشلف',900,600,'chlef ech chlef'],
+    [36,'El Tarf','الطارف',900,600,'el tarf taref'],
+    [24,'Guelma','قالمة',900,600,'guelma'],
+    [18,'Jijel','جيجل',900,600,'jijel'],
+    [40,'Khenchela','خنشلة',900,600,'khenchela'],
+    [26,'Médéa','المدية',900,600,'medea'],
+    [25,'Constantine','قسنطينة',900,600,'constantine قسنطينه'],
+    [27,'Mostaganem','مستغانم',900,600,'mostaganem'],
+    [28,"M’Sila",'المسيلة',900,600,'msila m sila messila'],
+    [31,'Oran','وهران',900,600,'oran wahran'],
+    [4,'Oum El Bouaghi','أم البواقي',900,600,'oum el bouaghi oum bouaghi ام البواقي'],
+    [19,'Sétif','سطيف',900,600,'setif'],
+    [41,'Souk Ahras','سوق أهراس',900,600,'souk ahras سوق اهراس'],
+    [12,'Tébessa','تبسة',900,600,'tebessa tbessa'],
+    [42,'Tipaza','تيبازة',900,600,'tipaza'],
+    [15,'Tizi Ouzou','تيزي وزو',900,600,'tizi ouzou tizi wezzu'],
+    [46,'Aïn Témouchent','عين تموشنت',950,600,'ain temouchent'],
+    [29,'Mascara','معسكر',950,600,'mascara'],
+    [48,'Relizane','غليزان',950,600,'relizane غليزان'],
+    [22,'Sidi Bel Abbès','سيدي بلعباس',950,600,'sidi bel abbes sidi belabbes'],
+    [38,'Tissemsilt','تيسمسيلت',950,600,'tissemsilt tissemssilt'],
+    [20,'Saïda','سعيدة',1000,700,'saida'],
+    [14,'Tiaret','تيارت',1000,700,'tiaret'],
+    [13,'Tlemcen','تلمسان',1000,700,'tlemcen'],
+    [7,'Biskra','بسكرة',1100,700,'biskra'],
+    [51,'Ouled Djellal','أولاد جلال',1100,null,'ouled djellal اولاد جلال'],
+    [17,'Djelfa','الجلفة',1100,700,'djelfa'],
+    [3,'Laghouat','الأغواط',1100,700,'laghouat aghouat الاغواط'],
+    [39,'El Oued','الوادي',1200,800,'el oued oued souf وادي سوف'],
+    [57,"El M’Ghair",'المغير',1200,null,'el mghair el meghaier meghair المغير'],
+    [47,'Ghardaïa','غرداية',1200,800,'ghardaia'],
+    [58,'El Meniaa','المنيعة',1200,800,'el meniaa menia المنيعة'],
+    [30,'Ouargla','ورقلة',1200,800,'ouargla wargla'],
+    [55,'Touggourt','تقرت',1200,800,'touggourt tougourt'],
+    [8,'Béchar','بشار',1300,900,'bechar'],
+    [52,'Béni Abbès','بني عباس',1300,null,'beni abbes بني عباس'],
+    [32,'El Bayadh','البيض',1300,900,'el bayadh bayadh'],
+    [45,'Naâma','النعامة',1300,900,'naama النعامة'],
+    [1,'Adrar','أدرار',1600,1100,'adrar'],
+    [49,'Timimoun','تيميمون',1600,1100,'timimoun'],
+    [37,'Tindouf','تندوف',1600,1100,'tindouf'],
+    [53,'In Salah','عين صالح',1900,1300,'in salah ain salah'],
+    [33,'Illizi','إليزي',2000,1600,'illizi ilizi اليزي'],
+    [11,'Tamanrasset','تمنراست',2100,1600,'tamanrasset tamanghasset'],
+    [56,'Djanet','جانت',2300,null,'djanet جانت']
+  ].map(([code,latin,arabic,home,desk,aliases]) => ({code,latin,arabic,home,desk,aliases}));
+
+  const cards = document.getElementById('cards');
+  const search = document.getElementById('search');
+  const clearSearch = document.getElementById('clearSearch');
+  const resultCount = document.getElementById('resultCount');
+  const resultsTitle = document.getElementById('resultsTitle');
+  const number = new Intl.NumberFormat('ar-DZ');
+
+  function normalize(value){
+    return String(value || '')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .toLowerCase()
+      .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/ؤ/g,'و').replace(/ئ/g,'ي')
+      .replace(/[^a-z0-9\u0600-\u06ff]+/g,' ')
+      .trim().replace(/\s+/g,' ');
+  }
+
+  function levenshtein(a,b){
+    if(!a.length) return b.length;
+    if(!b.length) return a.length;
+    const row = Array.from({length:b.length + 1},(_,i) => i);
+    for(let i=1;i<=a.length;i++){
+      let diagonal = row[0];
+      row[0] = i;
+      for(let j=1;j<=b.length;j++){
+        const previous = row[j];
+        row[j] = Math.min(row[j] + 1,row[j-1] + 1,diagonal + (a[i-1] === b[j-1] ? 0 : 1));
+        diagonal = previous;
+      }
+    }
+    return row[b.length];
+  }
+
+  function score(wilaya,rawQuery){
+    const query = normalize(rawQuery);
+    if(!query) return 1;
+    const code = String(wilaya.code).padStart(2,'0');
+    if(query === String(wilaya.code) || query === code) return 100;
+    const haystack = normalize(`${wilaya.latin} ${wilaya.arabic} ${wilaya.aliases}`);
+    if(haystack === query) return 95;
+    if(haystack.split(' ').includes(query)) return 90;
+    if(haystack.includes(query)) return 80 - Math.min(20,haystack.indexOf(query));
+    const candidates = [normalize(wilaya.latin),normalize(wilaya.arabic),...normalize(wilaya.aliases).split(' ')];
+    const best = Math.min(...candidates.map(candidate => levenshtein(query,candidate) / Math.max(query.length,candidate.length)));
+    const tolerance = query.length <= 3 ? .28 : query.length <= 6 ? .42 : .5;
+    return best <= tolerance ? 60 - best * 40 : 0;
+  }
+
+  function formatPrice(value){ return `${number.format(value)} دج`; }
+
+  function createCard(wilaya){
+    const article = document.createElement('article');
+    article.className = 'fee-card';
+    const desk = wilaya.desk == null
+      ? '<div class="fee unavailable"><span>Stop Desk</span><strong>غير متاح</strong></div>'
+      : `<div class="fee"><span>Stop Desk</span><strong>${formatPrice(wilaya.desk)}</strong></div>`;
+    article.innerHTML = `
+      <div class="card-top">
+        <h3 class="wilaya">${wilaya.arabic}<small>${wilaya.latin}</small></h3>
+        <span class="code">${String(wilaya.code).padStart(2,'0')}</span>
+      </div>
+      <div class="fees">
+        <div class="fee"><span>إلى المنزل</span><strong>${formatPrice(wilaya.home)}</strong></div>
+        ${desk}
+      </div>`;
+    return article;
+  }
+
+  function render(){
+    const query = search.value.trim();
+    const found = WILAYAS
+      .map((wilaya,index) => ({wilaya,index,relevance:score(wilaya,query)}))
+      .filter(item => item.relevance > 0)
+      .sort((a,b) => query ? b.relevance - a.relevance || a.index - b.index : a.index - b.index)
+      .map(item => item.wilaya);
+
+    cards.replaceChildren();
+    clearSearch.classList.toggle('is-visible',Boolean(query));
+    resultsTitle.textContent = query ? 'نتائج البحث' : 'كل الولايات المتاحة';
+    resultCount.textContent = query ? `${number.format(found.length)} نتيجة` : `${number.format(WILAYAS.length)} ولاية`;
+
+    if(!found.length){
+      const empty = document.createElement('div');
+      empty.className = 'empty';
+      empty.innerHTML = '<strong>ما لقيناش الولاية</strong>جرّبي اسمها بالفرنسية، بالعربية، أو اكتبي رقمها.';
+      cards.append(empty);
+      return;
+    }
+    found.forEach(wilaya => cards.append(createCard(wilaya)));
+  }
+
+  search.addEventListener('input',render);
+  clearSearch.addEventListener('click',() => {search.value='';render();search.focus()});
+  render();
+</script>
+</body>
+</html>
