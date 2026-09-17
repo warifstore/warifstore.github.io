@@ -82,32 +82,39 @@
   .results-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.4rem}
   .results-head h2{font-family:'El Messiri',serif;font-weight:600;font-size:1.65rem;margin:0}
   #resultCount{color:var(--berry);font-size:.8rem;font-weight:800;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;padding:.38rem .7rem;white-space:nowrap}
-  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
   .fee-card{
     position:relative;
     overflow:hidden;
-    padding:1.25rem;
-    border-radius:18px;
+    padding:.9rem 1rem;
+    border-radius:14px;
     border:1px solid var(--line);
     background:rgba(255,255,255,.82);
     box-shadow:0 10px 34px rgba(75,25,46,.07);
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    min-height:94px;
     transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
   }
-  .fee-card:hover{transform:translateY(-3px);border-color:rgba(217,66,123,.28);box-shadow:var(--shadow)}
-  .fee-card::after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:var(--blush);inset:-45px auto auto -35px;z-index:0}
+  .fee-card:hover{transform:translateY(-2px);border-color:rgba(217,66,123,.28);box-shadow:var(--shadow)}
+  .fee-card::after{content:"";position:absolute;width:72px;height:72px;border-radius:50%;background:var(--blush);inset:-36px auto auto -28px;z-index:0}
   .card-top,.fees{position:relative;z-index:1}
-  .card-top{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-bottom:1.2rem}
-  .wilaya{margin:0;font-family:'El Messiri',serif;font-size:1.18rem;font-weight:600;line-height:1.4}
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex:1;min-width:0}
+  .wilaya{margin:0;font-family:'El Messiri',serif;font-size:1.08rem;font-weight:600;line-height:1.35;min-width:0}
   .wilaya small{display:block;font-family:'Tajawal',sans-serif;color:rgba(23,16,20,.5);font-size:.74rem;font-weight:700;margin-top:.1rem;direction:ltr;text-align:right}
-  .code{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-size:.75rem;font-weight:800;flex:0 0 auto}
-  .fees{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
-  .fee{padding:.75rem;border-radius:12px;background:var(--blush);border:1px solid rgba(217,66,123,.09)}
+  .code{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-size:.7rem;font-weight:800;flex:0 0 auto}
+  .fees{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;flex:0 0 220px}
+  .fee{padding:.55rem .65rem;border-radius:10px;background:var(--blush);border:1px solid rgba(217,66,123,.09)}
   .fee span{display:block;color:rgba(23,16,20,.56);font-size:.72rem;margin-bottom:.22rem}
-  .fee strong{display:block;color:var(--berry);font-size:1.05rem;white-space:nowrap}
+  .fee strong{display:block;color:var(--berry);font-size:.96rem;white-space:nowrap}
   .fee.unavailable{background:rgba(23,16,20,.035);border-color:transparent}
-  .fee.unavailable strong{font-size:.86rem;color:rgba(23,16,20,.42)}
+  .fee.unavailable strong{font-size:.8rem;color:rgba(23,16,20,.42)}
   .empty{grid-column:1/-1;text-align:center;border:1px dashed rgba(138,49,88,.3);background:rgba(255,255,255,.55);border-radius:18px;padding:3.5rem 1rem;color:rgba(23,16,20,.58)}
   .empty strong{display:block;color:var(--ink);font-family:'El Messiri',serif;font-size:1.3rem;margin-bottom:.4rem}
+  .show-all{display:block;margin:1.25rem auto 0;border:1px solid rgba(138,49,88,.24);border-radius:999px;background:var(--paper);color:var(--berry);padding:.78rem 1.35rem;font-weight:800;cursor:pointer;box-shadow:0 10px 26px rgba(75,25,46,.08);transition:background .2s ease,color .2s ease,transform .2s ease}
+  .show-all:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
+  .show-all[hidden]{display:none}
 
   .details{margin-top:2.7rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
   .detail{padding:1.25rem;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.55);line-height:1.75;font-size:.88rem;color:var(--ink-soft)}
@@ -115,14 +122,16 @@
   footer{background:var(--ink);color:rgba(255,248,250,.65);padding:2rem 6vw;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.86rem}
   footer a{color:#f26b9d;text-decoration:none;font-weight:700}
 
-  @media(max-width:880px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:880px){.cards{grid-template-columns:1fr}}
   @media(max-width:580px){
     .topbar,main{width:min(100% - 2rem,1160px)}
     main{padding-top:1rem}
     .hero{padding-top:1.3rem}
     .hero h1{font-size:2.75rem}
     .search-shell{border-radius:18px}
-    .cards{grid-template-columns:1fr}
+    .fee-card{display:block;padding:.9rem}
+    .card-top{margin-bottom:.7rem}
+    .fees{width:100%}
     .details{grid-template-columns:1fr}
     .results-head{align-items:center}
   }
@@ -154,6 +163,7 @@
         <span id="resultCount" aria-live="polite"></span>
       </div>
       <div class="cards" id="cards"></div>
+      <button class="show-all" id="showAll" type="button">عرض جميع الولايات</button>
     </section>
 
     <div class="details">
@@ -229,9 +239,11 @@
   const cards = document.getElementById('cards');
   const search = document.getElementById('search');
   const clearSearch = document.getElementById('clearSearch');
+  const showAllButton = document.getElementById('showAll');
   const resultCount = document.getElementById('resultCount');
   const resultsTitle = document.getElementById('resultsTitle');
   const number = new Intl.NumberFormat('ar-DZ');
+  let showAll = false;
 
   function normalize(value){
     return String(value || '')
@@ -301,10 +313,16 @@
       .sort((a,b) => query ? b.relevance - a.relevance || a.index - b.index : a.index - b.index)
       .map(item => item.wilaya);
 
+    const visible = query || showAll ? found : found.slice(0,12);
     cards.replaceChildren();
     clearSearch.classList.toggle('is-visible',Boolean(query));
     resultsTitle.textContent = query ? 'نتائج البحث' : 'كل الولايات المتاحة';
-    resultCount.textContent = query ? `${number.format(found.length)} نتيجة` : `${number.format(WILAYAS.length)} ولاية`;
+    resultCount.textContent = query
+      ? `${number.format(found.length)} نتيجة`
+      : showAll
+        ? `${number.format(WILAYAS.length)} ولاية`
+        : `${number.format(visible.length)} من ${number.format(WILAYAS.length)} ولاية`;
+    showAllButton.hidden = Boolean(query) || showAll || found.length <= visible.length;
 
     if(!found.length){
       const empty = document.createElement('div');
@@ -313,11 +331,12 @@
       cards.append(empty);
       return;
     }
-    found.forEach(wilaya => cards.append(createCard(wilaya)));
+    visible.forEach(wilaya => cards.append(createCard(wilaya)));
   }
 
   search.addEventListener('input',render);
   clearSearch.addEventListener('click',() => {search.value='';render();search.focus()});
+  showAllButton.addEventListener('click',() => {showAll=true;render()});
   render();
 </script>
 </body>
