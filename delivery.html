@@ -308,9 +308,11 @@
   function render(){
     const query = search.value.trim();
     const found = WILAYAS
-      .map((wilaya,index) => ({wilaya,index,relevance:score(wilaya,query)}))
+      .map(wilaya => ({wilaya,relevance:score(wilaya,query)}))
       .filter(item => item.relevance > 0)
-      .sort((a,b) => query ? b.relevance - a.relevance || a.index - b.index : a.index - b.index)
+      .sort((a,b) => query
+        ? b.relevance - a.relevance || a.wilaya.code - b.wilaya.code
+        : a.wilaya.code - b.wilaya.code)
       .map(item => item.wilaya);
 
     const visible = query || showAll ? found : found.slice(0,12);
