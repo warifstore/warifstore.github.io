@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أسعار التوصيل — متجر وريف</title>
-<meta name="description" content="ابحثي عن سعر التوصيل إلى ولايتك مع متجر وريف عبر خدمة NOEST.">
+<meta name="description" content="ابحث عن سعر التوصيل إلى ولايتك مع متجر وريف عبر خدمة NOEST.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
@@ -79,8 +79,6 @@
   #search::placeholder{color:rgba(23,16,20,.42)}
   .clear{border:0;background:var(--blush);color:var(--berry);border-radius:999px;width:40px;height:40px;cursor:pointer;display:none;place-items:center;font-size:1.15rem;flex:0 0 auto}
   .clear.is-visible{display:grid}
-  .search-hint{font-size:.8rem;color:rgba(23,16,20,.52);margin:.8rem 0 0}
-
   .results-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:1.4rem}
   .results-head h2{font-family:'El Messiri',serif;font-weight:600;font-size:1.65rem;margin:0}
   #resultCount{color:var(--berry);font-size:.8rem;font-weight:800;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;padding:.38rem .7rem;white-space:nowrap}
@@ -141,14 +139,13 @@
   <main>
     <section class="hero" aria-labelledby="pageTitle">
       <span class="eyebrow">توصيل عبر الجزائر</span>
-      <h1 id="pageTitle">بكم التوصيل؟</h1>
-      <p class="intro">اكتبي اسم ولايتك أو رقمها، ونوريك السعر مباشرة. التوصيل يتم بكل عناية عبر خدمة <strong>NOEST</strong>.</p>
+      <h1 id="pageTitle">ما تكلفة التوصيل؟</h1>
+      <p class="intro">اكتب اسم ولايتك أو رقمها، وسنعرض لك السعر مباشرة. تتم عملية التوصيل بكل عناية عبر خدمة <strong>NOEST</strong>.</p>
       <div class="search-shell" role="search">
         <span class="search-icon" aria-hidden="true">⌕</span>
-        <input id="search" type="search" inputmode="search" autocomplete="off" placeholder="مثال: وهران، Oran أو 31" aria-label="ابحثي عن الولاية">
+        <input id="search" type="search" inputmode="search" autocomplete="off" placeholder="مثال: وهران، Oran أو 31" aria-label="ابحث عن الولاية">
         <button class="clear" id="clearSearch" type="button" aria-label="مسح البحث">×</button>
       </div>
-      <p class="search-hint">ماشي مشكل إذا غلطتي في حرف — البحث يفهمك ✦</p>
     </section>
 
     <section aria-labelledby="resultsTitle">
@@ -160,8 +157,8 @@
     </section>
 
     <div class="details">
-      <div class="detail"><strong>التوصيل للمنزل</strong>يوصل الطرد مباشرة إلى عنوان المستلمة في الولاية المختارة.</div>
-      <div class="detail"><strong>Stop Desk</strong>استلام الطرد من مكتب NOEST. إذا ظهر «غير متاح»، اختاري التوصيل للمنزل.</div>
+      <div class="detail"><strong>التوصيل إلى المنزل</strong>يُوصَل الطرد مباشرة إلى عنوانك في الولاية المختارة.</div>
+      <div class="detail"><strong>Stop Desk</strong>استلام الطرد من مكتب NOEST. إذا ظهر «غير متاح»، فاختر التوصيل إلى المنزل.</div>
       <div class="detail"><strong>رسوم إرجاع الطرد</strong>400 دج لجميع الولايات المعروضة، وهي تشمل الزيادة نفسها.</div>
       <div class="detail"><strong>ملاحظة</strong>الأسعار من جدول NOEST للانطلاق من ولاية ميلة، وقد تتغير عند تحديث شركة التوصيل لتسعيرتها.</div>
     </div>
@@ -312,7 +309,7 @@
     if(!found.length){
       const empty = document.createElement('div');
       empty.className = 'empty';
-      empty.innerHTML = '<strong>ما لقيناش الولاية</strong>جرّبي اسمها بالفرنسية، بالعربية، أو اكتبي رقمها.';
+      empty.innerHTML = '<strong>لم نعثر على الولاية</strong>جرّب كتابة اسمها بالعربية أو الفرنسية، أو أدخل رقمها.';
       cards.append(empty);
       return;
     }
