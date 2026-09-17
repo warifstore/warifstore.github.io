@@ -140,6 +140,17 @@
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
   .hero__cta:hover{background:var(--magenta); color:var(--ivory); transform:translateY(-1px);}
+  .hero__actions{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0.75rem;
+  }
+  .hero__cta--delivery{
+    background:var(--magenta);
+    border-color:var(--magenta);
+  }
+  .hero__cta--delivery:hover{background:var(--berry);}
   .hero__meta{
     display:flex;
     flex-wrap:wrap;
@@ -557,11 +568,13 @@
         <span class="hero__eyebrow label">بوكسات جاهزة للإهداء</span>
         <h1>متجر وريف للهدايا</h1>
         <p>هدايا لطيفة تجمع العطر، الإكسسوارات، التفاصيل الصغيرة، ولمسة تغليف تخلّي الطلب يوصلك كهدية جاهزة.</p>
-        <a class="hero__cta" href="#shop">اختاري البوكس المناسب ↓</a>
+        <div class="hero__actions">
+          <a class="hero__cta" href="#shop">اختاري البوكس المناسب ↓</a>
+          <a class="hero__cta hero__cta--delivery" href="delivery.html">تعرّف على أسعار التوصيل ←</a>
+        </div>
         <div class="hero__meta" aria-label="مزايا متجر وريف">
           <span>🇩🇿 الجزائر</span>
           <span>نقبل الدفع الإلكتروني</span>
-          <a href="delivery.html">أسعار التوصيل</a>
           <a href="https://instagram.com/warifstore.dz" target="_blank" rel="noopener">الطلب عبر الرسائل</a>
         </div>
       </div>
